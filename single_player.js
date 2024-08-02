@@ -69,6 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function setWinner(winner) {
         localStorage.setItem('winner', winner);
-        window.location.href = 'result.php';
+        window.location.href = 'result.html';
     }
 });
