@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe - Result</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #ffffff;
+        }
+
+        h1 {
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .message {
+            font-size: 2em;
+            margin-top: 20px;
+        }
+
+        a {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            text-decoration: none;
+            color: white;
+            background-color: #ff5e62;
+            border-radius: 5px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        a:hover {
+            background-color: #ff7b7b;
+            transform: scale(1.05);
+        }
+
+        a:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #ff7b7b;
+        }
+
+        .smiley {
+            font-size: 3em;
+            margin-top: 20px;
+            animation: smileyBounce 1s infinite;
+        }
+
+        @keyframes smileyBounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <h1 id="winner-text"></h1>
+    <div class="message" id="result-message"></div>
+    <div class="smiley" id="smiley"></div>
+    <a href="index.php">Back to Menu</a>
+    <a href="multiplayer.php">Play Again</a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const winner = localStorage.getItem('winner');
+            const winnerText = document.getElementById('winner-text');
+            const resultMessage = document.getElementById('result-message');
+            const smiley = document.getElementById('smiley');
+
+            if (winner === 'Draw') {
+                winnerText.textContent = 'It\'s a Draw!';
+                resultMessage.textContent = 'Try Again!';
+                smiley.textContent = '😐';
+            } else {
+                winnerText.textContent = `${winner} Wins!`;
+                resultMessage.textContent = 'Congratulations!';
+                smiley.textContent = '😊';
+
+                const duration = 2 * 1000;
+                const animationEnd = Date.now() + duration;
+                const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+                function randomInRange(min, max) {
+                    return Math.random() * (max - min) + min;
+                }
+
+                const interval = setInterval(() => {
+                    const timeLeft = animationEnd - Date.now();
+
+                    if (timeLeft <= 0) {
+                        return clearInterval(interval);
+                    }
+
+                    const particleCount = 50 * (timeLeft / duration);
+                    confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
+                    confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
+                }, 250);
+
+                // Additional effects for winner
+                const colors = ['#ff5e62', '#ff7b7b', '#ff9d9d', '#ffb8b8', '#ffd2d2'];
+                for (let i = 0; i < 50; i++) {
+                    setTimeout(() => {
+                        confetti({
+                            particleCount: 7,
+                            angle: randomInRange(55, 125),
+                            spread: randomInRange(50, 70),
+                            origin: { x: randomInRange(0.1, 0.9), y: Math.random() - 0.2 },
+                            colors: [colors[Math.floor(Math.random() * colors.length)]]
+                        });
+                    }, i * 100);
+                }
+            }
+            localStorage.removeItem('winner');
+        });
+
+        function randomInRange(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+    </script>
+</body>
+</html>
