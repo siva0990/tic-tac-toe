@@ -115,7 +115,7 @@
     </div>
     <div class="controls">
         <button onclick="resetGame()">Restart</button>
-        <a href="index.php">Back to Menu</a>
+        <a href="index.html">Back to Menu</a>
     </div>
 </body>
 </html>

@@ -111,7 +111,7 @@
                     confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
                 }, 250);
 
-                // Additional effects for winner
+          
                 const colors = ['#ff5e62', '#ff7b7b', '#ff9d9d', '#ffb8b8', '#ffd2d2'];
                 for (let i = 0; i < 50; i++) {
                     setTimeout(() => {

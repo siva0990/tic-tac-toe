@@ -59,12 +59,12 @@
         }
 
         .cell.x {
-            color: #ff5e62; /* Red color for X */
+            color: #ff5e62;
             font-weight: bold;
         }
 
         .cell.o {
-            color: #667eea; /* Blue color for O */
+            color: #667eea; 
             font-weight: bold;
         }
 
@@ -140,7 +140,7 @@
     </div>
     <div class="controls">
         <button onclick="resetGame()">Restart</button>
-        <a href="index.php">Back to Menu</a>
+        <a href="index.html">Back to Menu</a>
     </div>
 </body>
 </html>

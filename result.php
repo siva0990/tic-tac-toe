@@ -66,7 +66,7 @@
             }
         }
     </style>
-    <!-- Include canvas-confetti library -->
+
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </head>
 <body>
@@ -92,7 +92,7 @@
                 resultMessage.textContent = 'Congratulations!';
                 smiley.textContent = '😊';
 
-                // Confetti effect
+       
                 const duration = 2 * 1000;
                 const animationEnd = Date.now() + duration;
                 const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
@@ -109,12 +109,11 @@
                     }
 
                     const particleCount = 50 * (timeLeft / duration);
-                    // since particles fall down, start a bit higher than random
+                    
                     confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } }));
                     confetti(Object.assign({}, defaults, { particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } }));
                 }, 250);
 
-                // Additional effects for winner
                 const colors = ['#ff5e62', '#ff7b7b', '#ff9d9d', '#ffb8b8', '#ffd2d2'];
                 for (let i = 0; i < 50; i++) {
                     setTimeout(() => {
