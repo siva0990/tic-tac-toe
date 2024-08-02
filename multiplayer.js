@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function setWinner(winner) {
         localStorage.setItem('winner', winner);
         showColorEffect();
-        window.location.href = 'result.html';
+        window.location.href = 'result1.html';
     }
 
     updateTurnIndicator();
